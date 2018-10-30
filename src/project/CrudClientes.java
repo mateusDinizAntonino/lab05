@@ -6,49 +6,50 @@ import java.util.Collections;
 public class CrudClientes {
 	private HashMap<String,Cliente> clientes = new HashMap<String,Cliente>();
 
-	void CadastraCliente(String cpf,String nome,String email,String localizacao) {
+	String cadastraCliente(String cpf,String nome,String email,String localizacao) {
 		if(!clientes.containsKey(cpf)) {
-			clientes.put(cpf,new Cliente(cpf,nome,email,localizacao));
-		}
-		else {
-			throw new IllegalArgumentException("Cpf j� cadastrado!");
-		}
+		}		
 	}
 
-	void editaClienteEmail(String cpf,String email) {
+	String editaClienteEmail(String cpf,String email) {
 		if(clientes.containsKey(cpf)) {
 		clientes.get(cpf).EditaClienteEmail(email);
+		return "Cliente editado com sucesso!";
 	}
 		else {
-			throw new IllegalArgumentException("Cpf n�o cadastrado!");
+			return "cpf não cadastrado!";
 		}
 	}	
-	void editaClienteNome(String cpf,String nome) {
+	String editaClienteNome(String cpf,String nome) {
 		if(clientes.containsKey(cpf)) {
-		clientes.get(cpf).EditaClienteNome(nome);
+		return "cliente editado com sucesso!";
 	}
 		else {
-			throw new IllegalArgumentException("Cpf n�o cadastrado!");
+			return "Cpf não cadastrado!";
 
 		}
 	}
-	void editaClienteLocalizacao(String cpf,String localizacao) {
+	String editaClienteLocalizacao(String cpf,String localizacao) {
 		if(clientes.containsKey(cpf)) {
 		clientes.get(cpf).EditaClienteLocalizacao(localizacao);
-	}
+		return "Cliente editado com sucesso!";
+		}
 		else {
-			throw new IllegalArgumentException("Cpf n�o cadastrado!");
+			return "Cpf não cadastrado!";
 		}
 	}
-	void removeCliente(String cpf) {
+	String removeCliente(String cpf) {
 		if(clientes.containsKey(cpf)) {
 			clientes.remove(cpf);
+			return "Cliente removido com sucesso!";
 		}
 		else {
-			throw new IllegalArgumentException("n�o � poss�vel remover um cpf n�o cadastrado!");
+			return "Cpf não cadatrado!";
 		}
 	}
-
+	
+	
+	
 	@Override
 	public String toString() {
 		ArrayList<String> listaClientes = new ArrayList<String>();

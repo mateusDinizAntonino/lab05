@@ -11,7 +11,7 @@ public class CrudFornecedores {
 			fornecedores.put(nome,new Fornecedor(nome,email,telefone));	
 		}
 		else {
-			throw new IllegalArgumentException("nome j� cadastrado!");
+			throw new IllegalArgumentException("nome já cadastrado!");
 		}
 	}
 
@@ -20,7 +20,7 @@ public class CrudFornecedores {
 			fornecedores.get(nome).editaFornecedorTelefone(telefone);
 		}
 		else {
-			throw new IllegalArgumentException("Fornecedor n�o cadastrado!");
+			throw new IllegalArgumentException("Fornecedor não cadastrado!");
 		}
 	}
 	void editaFornecedorEmail(String nome,String email) {
@@ -28,7 +28,7 @@ public class CrudFornecedores {
 			fornecedores.get(nome).editaFornecedorEmail(email);
 		}
 		else {
-			throw new IllegalArgumentException("Fornecedor n�o cadastrado!");
+			throw new IllegalArgumentException("Fornecedor não cadastrado!");
 		}
 	}
 

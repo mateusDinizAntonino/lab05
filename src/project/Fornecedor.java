@@ -28,16 +28,16 @@ public class Fornecedor {
 	void editaFornecedorTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	void CadastraProduto(String nomeProduto,String preco) {
+	void CadastraProduto(String nomeProduto,int preco,String descricao) {
 		if(!produtos.containsKey(nomeProduto)) {
-			produtos.put(nomeProduto,new Produto(nomeProduto,preco));
+			produtos.put(nomeProduto,new Produto(nomeProduto,preco,descricao));
 		}
 		else {
 			throw new IllegalArgumentException("produto ja cadastrado!");
 		}
 
 	}
-	void editaPrecoProduto(String nomeProduto,String preco) {
+	void editaPrecoProduto(String nomeProduto,int preco) {
 		if(produtos.containsKey(nome)) {
 			produtos.get(nome).editaPreco(preco);
 		}
@@ -47,7 +47,7 @@ public class Fornecedor {
 			produtos.remove(nome);
 		}
 		else {
-			throw new IllegalArgumentException("Produto n„o existe");
+			throw new IllegalArgumentException("Produto n√£o existe");
 		}
 	}
 	
