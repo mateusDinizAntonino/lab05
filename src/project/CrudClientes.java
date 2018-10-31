@@ -1,68 +1,59 @@
 package project;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class CrudClientes {
-	private HashMap<String,Cliente> clientes = new HashMap<String,Cliente>();
+	private HashMap<String, Cliente> clientes = new HashMap<String, Cliente>();
 
-	String cadastraCliente(String cpf,String nome,String email,String localizacao) {
-		if(!clientes.containsKey(cpf)) {
-		}		
+	void cadastraCliente(String cpf, String nome, String email, String localizacao) {
+		if (clientes.containsKey(cpf)) {
+			throw new IllegalArgumentException("Erro no cadastro do cliente: cliente ja existe.");
+		}
+		clientes.put(cpf, new Cliente(cpf, nome, email, localizacao));
 	}
 
-	String editaClienteEmail(String cpf,String email) {
-		if(clientes.containsKey(cpf)) {
-		clientes.get(cpf).EditaClienteEmail(email);
-		return "Cliente editado com sucesso!";
-	}
-		else {
-			return "cpf não cadastrado!";
+	void editaCliente(String cpf,String atributo,String novoValor) {
+		if (clientes.containsKey(cpf)) {
+			clientes.get(cpf).editaCliente(atributo,novoValor);
+		} else {
+			throw new IllegalArgumentException("Erro na edicao do cliente: cliente nao existe.");
 		}
-	}	
-	String editaClienteNome(String cpf,String nome) {
-		if(clientes.containsKey(cpf)) {
-		return "cliente editado com sucesso!";
 	}
-		else {
-			return "Cpf não cadastrado!";
 
-		}
-	}
-	String editaClienteLocalizacao(String cpf,String localizacao) {
-		if(clientes.containsKey(cpf)) {
-		clientes.get(cpf).EditaClienteLocalizacao(localizacao);
-		return "Cliente editado com sucesso!";
-		}
-		else {
-			return "Cpf não cadastrado!";
-		}
-	}
-	String removeCliente(String cpf) {
-		if(clientes.containsKey(cpf)) {
+	void removeCliente(String cpf) {
+		if (clientes.containsKey(cpf)) {
 			clientes.remove(cpf);
-			return "Cliente removido com sucesso!";
-		}
-		else {
-			return "Cpf não cadatrado!";
+		} else {
+			throw new IllegalArgumentException("Erro na remocao de cpf.");
 		}
 	}
-	
+	String exibeCliente(String cpf) {
+		if(clientes.containsKey(cpf)) {
+		return clientes.get(cpf).toString();
+		}
+		else {
+			throw new IllegalArgumentException("Erro na exibicao do cliente: cliente nao existe.");
+		}
+	}
 	
 	
 	@Override
 	public String toString() {
 		ArrayList<String> listaClientes = new ArrayList<String>();
 		String retorno = "";
-		
-		for(Cliente cliente: clientes.values()) {
+
+		for (Cliente cliente : clientes.values()) {
 			listaClientes.add(cliente.toString());
 		}
-		Collections.sort(listaClientes,String.CASE_INSENSITIVE_ORDER);
-		for (String cliente : listaClientes) {
-			retorno += cliente + "|";
+		Collections.sort(listaClientes, String.CASE_INSENSITIVE_ORDER);
+		for (int i = 0; i < listaClientes.size() -1; i++) {
+			
+			retorno += listaClientes.get(i) + " | ";
 		}
+		retorno += listaClientes.get(listaClientes.size()-1);
+		
 		return retorno;
 	}
-	
 }
