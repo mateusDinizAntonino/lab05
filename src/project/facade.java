@@ -23,14 +23,40 @@ public class facade {
 		crudClientes.removeCliente(cpf);
 		return cpf;
 	}
-
-	public static void main(String[] args) {
-		args = new String[] { "project.facade", "easytest/use_case_1.txt" };
-		EasyAccept.main(args);
-	}								
+	
+	
 	public String exibeClientes() {
 		return crudClientes.toString();
 	}
+	
+	public String adicionaFornecedor(String  nome,String email,String telefone) {
+		crudFornecedores.cadastrarFornecedor(nome,email,telefone);
+		return nome;
+	}
+	public String exibeFornecedor(String nome) {
+		return crudFornecedores.exibeFornecedor(nome);
+	}
+	public String exibeFornecedores() {
+		return crudFornecedores.toString();
+	}
+	public void editaFornecedor(String nome,String atributo,String novoValor) {
+		crudFornecedores.editaFornecedor(nome, atributo, novoValor);	
+	}
+	public void removeFornecedor(String nome) {
+		crudFornecedores.removeFornecedor(nome);
+	}
+	public void adicionaProduto(String fornecedor,String nomeProduto,String descricao ,double preco) {
+		crudFornecedores.getFornecedor(fornecedor).cadastraProduto(nomeProduto, descricao, preco);
+	}
+		
+	
+	
+	
+	public static void main(String[] args) {
+		args = new String[] { "project.facade", "easytest/use_case_1.txt","easytest/use_case_2.txt","easytest/use_case_3.txt"};
+		EasyAccept.main(args);
+	}								
+	
 
 
 

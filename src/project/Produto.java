@@ -5,19 +5,11 @@ public class Produto {
 	double preco;
 	String descricao;
 	
-	Produto(String nome,double preco,String descricao){
+	Produto(String nome,String descricao,double preco){
 		this.nome = nome;
-		editaPreco(preco);
-		editaDescricao(descricao);
-	}
-	void editaPreco(double preco) {
 		this.preco = preco;
-		
-	}
-	void editaDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-	
+	}	
 	String getNome() {
 		return nome;
 	}
